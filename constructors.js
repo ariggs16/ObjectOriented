@@ -36,16 +36,40 @@ function expect(target) {
 //
 // Only add code to *THIS* section!
 
-function Dog() {
-  this.status = 'normal'
-}
+  function Dog (dog) {
+    this.status = 'normal'
+    this.hungry = true
+    if (dog) {
+      if (dog.color !== undefined) {
+      this.color = dog.color
+      }
+      if (dog.hungry !== undefined) {
+      this.hungry = dog.hungry
+      }
+    }
+  }
 
-function Human() {
+  function Human (mood) {
+    this.cool = false
+    if (mood) {
+      if (mood.cool) {
+        this.mood = mood.cool
+      }
+      if (mood.cool !== undefined) {
+        this.cool = mood.cool
+      }
+    }
 
-}
-Human.prototype.pet = function(dog) {
-  dog.status = 'happy'
-}
+  }
+
+  Human.prototype.pet = function (dog) {
+    dog.status = 'happy'
+  }
+
+  Human.prototype.feed = function (dog) {
+    dog.hungry = false
+  }
+
 
 
 //        __
@@ -120,4 +144,4 @@ it("should make Julia cool and Mason not cool", function(){
   sadie.owner = mason;
   expect(julia.cool).toBe(true);
   expect(mason.cool).toBe(false);
-});\
+});
